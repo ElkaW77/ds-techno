@@ -7,7 +7,7 @@ public interface ICommand {
 
     String getName();
 
-    default List<String> getAliasess(){
+    default List<String> getAliases(){
         return List.of();
     }
 }
