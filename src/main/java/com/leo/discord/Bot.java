@@ -14,12 +14,9 @@ public class Bot {
                 .addEventListeners(new Listener())
                 .setActivity(Activity.playing("Techno Music"))
                 .build();
-
     }
-
 
     public static void main(String[] args) throws LoginException {
         new Bot();
     }
-
 }
