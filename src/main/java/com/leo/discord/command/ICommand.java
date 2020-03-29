@@ -2,6 +2,8 @@ package com.leo.discord.command;
 
 import java.util.List;
 
+import java.util.List;
+
 public interface ICommand {
     void handle(CommandContext ctx);
 
@@ -9,7 +11,7 @@ public interface ICommand {
 
     String getHelp();
 
-    default List<String> getAliases(){
-        return List.of();
+    default List<String> getAliases() {
+        return List.of(); 
     }
 }

@@ -12,8 +12,8 @@ public class HelpCommand implements ICommand {
 
     private final CommandManager manager;
 
-    public HelpCommand(CommandManager m) {
-        this.manager = m;
+    public HelpCommand(CommandManager manager) {
+        this.manager = manager;
     }
 
     @Override
@@ -21,13 +21,14 @@ public class HelpCommand implements ICommand {
         List<String> args = ctx.getArgs();
         TextChannel channel = ctx.getChannel();
 
-        if (args.isEmpty()){
-
+        if (args.isEmpty()) {
             StringBuilder builder = new StringBuilder();
 
-            builder.append("List of Commands\n");
+            builder.append("List of commands\n");
 
-            manager.getCommands().stream().map(ICommand::getName).forEach((it) -> builder.append("'").append(Config.get("prefix")).append(it).append("'\n"));
+            manager.getCommands().stream().map(ICommand::getName).forEach(
+                    (it) -> builder.append('`').append(Config.get("prefix")).append(it).append("` \n")
+            );
 
             channel.sendMessage(builder.toString()).queue();
             return;
@@ -36,9 +37,12 @@ public class HelpCommand implements ICommand {
         String search = args.get(0);
         ICommand command = manager.getCommand(search);
 
-        if (command == null){
-            channel.sendMessage(command.getHelp()).queue();
+        if (command == null) {
+            channel.sendMessage("Nothing found for " + search).queue();
+            return;
         }
+
+        channel.sendMessage(command.getHelp()).queue();
     }
 
     @Override
@@ -48,7 +52,7 @@ public class HelpCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "Show the list with commands in the bot \n" + "Usage: '!help [command]'";
+        return "Shows the list with commands in the bot\n" + "Usage: '!help [command]'";
     }
 
     @Override

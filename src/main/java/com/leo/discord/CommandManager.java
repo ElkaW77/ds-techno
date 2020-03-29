@@ -3,6 +3,8 @@ package com.leo.discord;
 import com.leo.discord.command.CommandContext;
 import com.leo.discord.command.ICommand;
 import com.leo.discord.command.commands.HelpCommand;
+import com.leo.discord.command.commands.KickCommand;
+import com.leo.discord.command.commands.MemeCommand;
 import com.leo.discord.command.commands.PingCommand;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
@@ -18,6 +20,8 @@ public class CommandManager {
     public CommandManager() {
         addCommand(new PingCommand());
         addCommand(new HelpCommand(this));
+        addCommand(new KickCommand());
+        addCommand(new MemeCommand());
     }
 
     private void addCommand(ICommand cmd) {
@@ -64,5 +68,4 @@ public class CommandManager {
             cmd.handle(ctx);
         }
     }
-
 }
