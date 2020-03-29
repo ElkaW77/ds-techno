@@ -12,7 +12,7 @@ public class Bot {
         new JDABuilder()
                 .setToken(Config.get("TOKEN"))
                 .addEventListeners(new Listener())
-                .setActivity(Activity.watching("MenuDocs"))
+                .setActivity(Activity.playing("Techno Music"))
                 .build();
 
     }
